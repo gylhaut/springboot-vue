@@ -3,10 +3,11 @@ package com.gylhaut.springbootdemo.service.impl;
 import com.gylhaut.springbootdemo.domain.User;
 import com.gylhaut.springbootdemo.mapper.UserMapper;
 import com.gylhaut.springbootdemo.service.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -23,5 +24,9 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void deleteById(Long id) {
         this.userMapper.deleteByPrimaryKey(id);
+    }
+    @Override
+    public List<User> queryAll(){
+        return userMapper.selectAll();
     }
 }
