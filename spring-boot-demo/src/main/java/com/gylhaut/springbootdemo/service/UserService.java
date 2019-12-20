@@ -6,9 +6,11 @@ import java.util.List;
 
 public interface UserService {
 
-    public User queryById(Long id);
+     int insertUser(User u);
 
-    public void deleteById(Long id);
+     User queryById(Long id);
 
-    List<User> queryAll();
+     void deleteById(Long id);
+
+     List<User> queryAll();
 }

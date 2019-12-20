@@ -16,6 +16,15 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
+    public int insertUser(User u) {
+//        User us = new User();
+//        us.setName("张明");
+//        us.setUsername("zhangming");
+//        us.setPassword("7899");
+        return  userMapper.insert(u);
+    }
+
+    @Override
     public User queryById(Long id) {
         return this.userMapper.selectByPrimaryKey(id);
     }
@@ -26,7 +35,10 @@ public class UserServiceImpl implements UserService {
         this.userMapper.deleteByPrimaryKey(id);
     }
     @Override
-    public List<User> queryAll(){
+    public List<User> queryAll()
+    {
         return userMapper.selectAll();
     }
+
+
 }

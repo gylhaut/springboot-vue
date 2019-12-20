@@ -7,32 +7,28 @@ import com.gylhaut.springbootdemo.mapper.UserMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("mybatis")
-@Api("Mybatis")
+@Api(tags="Mybatis")
 public class MybatisController {
 
     @Autowired
     private UserMapper userMapper;
 
     @GetMapping("hello")
-    @ApiOperation(httpMethod = "GET",value = "管理员登录" ,produces = MediaType.TEXT_HTML_VALUE,tags = "admin/zjk",notes = "参数")
+    @ApiOperation("test")
     public String test(){
         return "hello ssm";
     }
 
     @GetMapping("query")
     @ResponseBody
-    @ApiOperation(httpMethod = "GET",value = "管理员登录" ,produces = MediaType.TEXT_HTML_VALUE,tags = "admin/zjk",notes = "参数")
+    @ApiOperation("查询所有用户信息")
     public List<User> queryUserList(){
         List<User> users = userMapper.selectAll();
        // List<User> users = userMapper.queryUserList();
@@ -41,7 +37,7 @@ public class MybatisController {
 
 
     @GetMapping("getUserList")
-    @ApiOperation(httpMethod = "GET",value = "管理员登录" ,produces = MediaType.TEXT_HTML_VALUE,tags = "admin/zjk",notes = "参数")
+    @ApiOperation("getUserList")
     public  List<User>  getUserList(){
         // 创建Example
         Example example = new Example(User.class);
@@ -59,8 +55,8 @@ public class MybatisController {
      * 实现分页查询
      * @return
      */
-    @RequestMapping("findUserByPage")
-    @ApiOperation(httpMethod = "GET",value = "管理员登录" ,produces = MediaType.TEXT_HTML_VALUE,tags = "admin/zjk",notes = "参数")
+    @RequestMapping(value = "findUserByPage", method = RequestMethod.GET)
+    @ApiOperation("findUserByPage")
     public List<User>  findUserByPage() {
         PageHelper.startPage(2,2);
         List<User> list =  userMapper.selectAll();
